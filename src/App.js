@@ -5,7 +5,7 @@ const App = () => {
   const [databaseInfo, setDatabaseInfo] = useState({})
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/database_info').then((response) => {
+    axios.get('/api/database_info').then((response) => {
       setDatabaseInfo(response.data)
     })
   }, [])
