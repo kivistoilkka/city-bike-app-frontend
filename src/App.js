@@ -5,6 +5,8 @@ import Stations from './components/Stations'
 import StationInfo from './components/StationInfo'
 import Journeys from './components/Journeys'
 
+import { AppBar, Container, IconButton, Button, Toolbar } from '@mui/material'
+
 const Home = () => {
   const [databaseInfo, setDatabaseInfo] = useState({})
 
@@ -26,20 +28,35 @@ const Home = () => {
 
 const App = () => {
   return (
-    <Router>
-      <h1>City Bike App</h1>
-      <div>
-        <Link to="/">Home</Link>
-        <Link to="/stations">Stations</Link>
-        <Link to="/journeys">Journeys</Link>
-      </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/stations" element={<Stations />} />
-        <Route path="/stations/:id" element={<StationInfo />} />
-        <Route path="/journeys" element={<Journeys />} />
-      </Routes>
-    </Router>
+    <Container>
+      <Router>
+        <h1>City Bike App</h1>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+            ></IconButton>
+            <Button color="inherit" component={Link} to="/">
+              Home
+            </Button>
+            <Button color="inherit" component={Link} to="/stations">
+              Stations
+            </Button>
+            <Button color="inherit" component={Link} to="/journeys">
+              Journeys
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/stations" element={<Stations />} />
+          <Route path="/stations/:id" element={<StationInfo />} />
+          <Route path="/journeys" element={<Journeys />} />
+        </Routes>
+      </Router>
+    </Container>
   )
 }
 

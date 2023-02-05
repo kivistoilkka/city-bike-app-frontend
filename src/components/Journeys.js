@@ -1,6 +1,16 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import {
+  TableContainer,
+  Table,
+  TableHead,
+  TableBody,
+  Paper,
+  TableRow,
+  TableCell,
+  TableSortLabel,
+} from '@mui/material'
 
 const Journeys = (props) => {
   const [journeys, setJourneys] = useState([])
@@ -59,45 +69,56 @@ const Journeys = (props) => {
   return (
     <div>
       <p>{explanation()}</p>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              <a onClick={sortByDepartureTime}>Departure time</a>
-            </th>
-            <th>Departure station</th>
-            <th>Return station</th>
-            <th>Return time</th>
-            <th>
-              <a onClick={sortByDistance}>Distance (meters)</a>
-            </th>
-            <th>
-              <a onClick={sortByDuration}>Duration (minutes)</a>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {journeys.map((journey) => (
-            <tr key={journey.id}>
-              <td>{journey.departure_time}</td>
-              <td>
-                {' '}
-                <Link to={`/stations/${journey.departure_station}`}>
-                  {journey.departure_station}
-                </Link>
-              </td>
-              <td>
-                <Link to={`/stations/${journey.return_station}`}>
-                  {journey.return_station}
-                </Link>
-              </td>
-              <td>{journey.return_time}</td>
-              <td>{journey.distance}</td>
-              <td>{(journey.duration / 60).toFixed(1)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                <TableSortLabel
+                  onClick={sortByDepartureTime}
+                  direction={'desc'}
+                >
+                  Departure time
+                </TableSortLabel>
+              </TableCell>
+              <TableCell>Departure station</TableCell>
+              <TableCell>Return station</TableCell>
+              <TableCell>Return time</TableCell>
+              <TableCell>
+                <TableSortLabel onClick={sortByDistance} direction={'desc'}>
+                  Distance (meters)
+                </TableSortLabel>
+              </TableCell>
+              <TableCell>
+                <TableSortLabel onClick={sortByDuration} direction={'desc'}>
+                  Duration (minutes)
+                </TableSortLabel>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {journeys.map((journey) => (
+              <TableRow key={journey.id}>
+                <TableCell>{journey.departure_time}</TableCell>
+                <TableCell>
+                  {' '}
+                  <Link to={`/stations/${journey.departure_station}`}>
+                    {journey.departure_station}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/stations/${journey.return_station}`}>
+                    {journey.return_station}
+                  </Link>
+                </TableCell>
+                <TableCell>{journey.return_time}</TableCell>
+                <TableCell>{journey.distance}</TableCell>
+                <TableCell>{(journey.duration / 60).toFixed(1)}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   )
 }
