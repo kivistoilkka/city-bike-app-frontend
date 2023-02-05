@@ -13,15 +13,31 @@ const Stations = () => {
 
   return (
     <div>
-      <ul>
-        {stations.map((s) => (
-          <li key={s.id}>
-            <Link to={`/stations/${s.id}`}>
-              {s.id}: {s.name_fi}, {s.address_fi}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Number of departures</th>
+            <th>Number of returns</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stations.map((s) => (
+            <tr key={s.id}>
+              <td>{s.id}</td>
+              <td>
+                {' '}
+                <Link to={`/stations/${s.id}`}>{s.name_fi}</Link>
+              </td>
+              <td>{s.address_fi}</td>
+              <td>{s.departures}</td>
+              <td>{s.returns}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }
