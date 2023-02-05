@@ -86,7 +86,7 @@ const Journeys = (props) => {
               <TableCell>Return time</TableCell>
               <TableCell>
                 <TableSortLabel onClick={sortByDistance} direction={'desc'}>
-                  Distance (meters)
+                  Distance (kilometers)
                 </TableSortLabel>
               </TableCell>
               <TableCell>
@@ -112,7 +112,7 @@ const Journeys = (props) => {
                   </Link>
                 </TableCell>
                 <TableCell>{journey.return_time}</TableCell>
-                <TableCell>{journey.distance}</TableCell>
+                <TableCell>{(journey.distance / 1000).toFixed(2)}</TableCell>
                 <TableCell>{(journey.duration / 60).toFixed(1)}</TableCell>
               </TableRow>
             ))}
