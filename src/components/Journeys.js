@@ -10,6 +10,7 @@ import {
   TableRow,
   TableCell,
   TableSortLabel,
+  Typography,
 } from '@mui/material'
 
 const Journeys = (props) => {
@@ -68,7 +69,9 @@ const Journeys = (props) => {
 
   return (
     <div>
-      <p>{explanation()}</p>
+      <p>
+        <Typography>{explanation()}</Typography>
+      </p>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

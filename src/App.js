@@ -5,10 +5,20 @@ import Stations from './components/Stations'
 import StationInfo from './components/StationInfo'
 import Journeys from './components/Journeys'
 
-import { AppBar, Container, IconButton, Button, Toolbar } from '@mui/material'
+import {
+  AppBar,
+  Container,
+  IconButton,
+  Button,
+  Toolbar,
+  Typography,
+} from '@mui/material'
 
 const Home = () => {
-  const [databaseInfo, setDatabaseInfo] = useState({})
+  const [databaseInfo, setDatabaseInfo] = useState({
+    station_count: '-',
+    journey_count: '-',
+  })
 
   useEffect(() => {
     axios.get('/api/database_info').then((res) => {
@@ -19,8 +29,10 @@ const Home = () => {
   return (
     <div>
       <p>
-        Database contains {databaseInfo.station_count} stations and{' '}
-        {databaseInfo.journey_count} journeys
+        <Typography>
+          Database contains {databaseInfo.station_count} stations and{' '}
+          {databaseInfo.journey_count} journeys
+        </Typography>
       </p>
     </div>
   )
@@ -30,7 +42,9 @@ const App = () => {
   return (
     <Container>
       <Router>
-        <h1>City Bike App</h1>
+        <Typography variant="h3" component="h1">
+          City Bike App
+        </Typography>
         <AppBar position="static">
           <Toolbar>
             <IconButton

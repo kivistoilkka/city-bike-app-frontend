@@ -9,6 +9,7 @@ import {
   Paper,
   TableRow,
   TableCell,
+  Typography,
 } from '@mui/material'
 
 const Stations = () => {
@@ -24,7 +25,11 @@ const Stations = () => {
 
   const view = () => {
     if (loading) {
-      return <p>Getting data from database</p>
+      return (
+        <p>
+          <Typography>Getting data from database</Typography>
+        </p>
+      )
     } else {
       return (
         <div>
